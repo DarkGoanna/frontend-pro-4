@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hw-4</title>
+</head>
+<body>
+    <script>
+        /* переменные */
+        let body = document.querySelector('body');
+        let christmasTree = ''
+        let christmasTree2 = '';
+        let layers = checkValue( prompt('Введи целое число, больше 1', 2) );
+
+        /* работаем */
+            /* 1 */
+        for (let i = 1; i <= layers; i++) {
+            for (let k = layers; k >= i; k--) {
+                christmasTree += ` `;
+            }
+            for (let z = 0; z < i; z++) {
+                christmasTree += `* `;
+            }
+            christmasTree += `\n`;
+        }
+
+            /* 2 */
+        for (let i = 1, z = layers; i <= layers; i++) {
+            christmasTree2 += ` `.repeat(z - i);
+            christmasTree2 += `#`.repeat(i);
+            christmasTree2 += `\n`;
+        }
+            /* смотрим */
+        alert(christmasTree);
+        alert(christmasTree2);
+
+
+        /* функция для проверки введенного значения */
+        function checkValue (number) {
+            let normalValue = Math.round(+number);
+
+            if (number == null) {
+                return;
+            } else if ( isNaN(number) ) {
+                number = prompt('Это трудно назвать целым числом, давай другое');
+                return checkValue(number);
+            } else if (number < 2) {
+                number = prompt('Целое число больше 1, пожалуста');
+                return checkValue(number);
+            } else if (number != normalValue) {
+                number = prompt('Может тогда лучше используем ' + normalValue + '?', normalValue);
+                return checkValue(number);
+            }
+
+            return number;
+        }
+        
+    </script>
+</body>
+</html>
